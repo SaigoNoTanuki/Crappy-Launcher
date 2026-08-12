@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Windows;
 using Velopack;
 using Velopack.Sources;
 
@@ -44,7 +46,7 @@ namespace CrappyLauncher
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error checking for updates: {ex.Message}", "Update Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Debug.WriteLine($"Update check failed: {ex}");
             }
             
         }

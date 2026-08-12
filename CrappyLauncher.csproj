@@ -8,12 +8,18 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <ApplicationIcon>Resources\app.ico</ApplicationIcon>
+  </PropertyGroup>
+
   <ItemGroup>
+    <None Remove="Resources\app.ico" />
     <None Remove="Resources\Images\DefaultBanner.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Fonts\LilitaOne-Regular.ttf" />
+    <Resource Include="Resources\app.ico" />
     <Resource Include="Resources\Images\DefaultBanner.png" />
   </ItemGroup>
   <ItemGroup>
