@@ -5,21 +5,12 @@ seeing how some games require their own seperate launcher.
 
 NOTE: Currently the Setup.exe installs the Launcher in C:/Users/User/AppData/Local/CrappyLauncher
 
-Highlights (Alpha 1.0):
--Ability to launch a random game from your library.
--Ability to add .exe(Game/Launcher) files to your library.
--Ability to Automatically update the launcher using Velopack.
+Highlights (Dev-Alpha 1.0.2):
 
-Future Planned Features include:
--Ability to add entire Steam Library to launcher.
--Genre Based Filtering.
--A functioning settings window.
--Ability to Delete games ffrom device.
--Ability to install games to Device.(Through other launchers like steam, GOG, Epic etc.)
--Ability to change banner images.
--Genre based Random launching.
--Automatically add available banners(Steam, Epic game art).
--Functioning Patch Notes window/Page.
--Automatically adding steam games to library.
--Ability to change config location.
--Feature to auto add Banners from SteamGridDB.
+Additions:
+	Added Settings Window.
+	
+Removals:
+	Removed the option to select a directory to Add games.
+		Reason: If a folder had multiple .exe files they all got added.
+				Until a solution is found, this feature will sit it out.
