@@ -3,7 +3,7 @@ Crappy Launcher is a simple game Launcher, It's main feature being the ability t
 Crappy launcher is made to bring all your games into one place, 
 seeing how some games require their own seperate launcher.
 
-NOTE: Currently the Setup.exe installs the Launcher in C:/Users/User/AppData/Local/CrappyLauncher.cl
+NOTE: Currently the Setup.exe installs the Launcher in C:/Users/User/AppData/Local/CrappyLauncher
 
 Highlights (Alpha 1.0):
 -Ability to launch a random game from your library.
