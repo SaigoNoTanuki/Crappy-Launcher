@@ -1,4 +1,5 @@
 ﻿using CrappyLauncher.ViewModels;
+using CrappyLauncher.Views;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
@@ -89,11 +90,8 @@ namespace CrappyLauncher
         //Settings
         private void SettingsButton(Object s, RoutedEventArgs e)
         {
-            string text = "Under Construction";
-            string caption = "Under Construction";
-            MessageBoxButton button = MessageBoxButton.OK;
-            MessageBoxImage icon = MessageBoxImage.Information;
-            MessageBox.Show(text, caption, button, icon);
+            SettingsVV settingsWindow = new SettingsVV();
+            settingsWindow.Show();
         }
     }
 }

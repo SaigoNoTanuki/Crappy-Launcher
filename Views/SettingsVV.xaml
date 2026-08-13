@@ -1,16 +1,13 @@
-﻿<Window x:Class="CrappyLauncher.MainWindow"
-        x:Name="RootWindow"
+﻿<Window x:Class="CrappyLauncher.Views.SettingsVV"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CrappyLauncher"
-        mc:Ignorable="d" WindowStyle="None" MouseDown="OnMouseHold"
-        Title="Crappy Launcher" Height="600" Width="1200"
-        Icon="/Resources/app.ico"
-        WindowState="{Binding WindowState}"
-        >
-    
+        xmlns:local="clr-namespace:CrappyLauncher.Views"
+        mc:Ignorable="d" Icon="/Resources/app.ico"
+        Title="SettingsVV" Height="450" Width="800"
+        WindowStyle="None" MouseDown="OnMouseHold"
+        WindowState="{Binding WindowState}">
     <Window.Resources>
         <!-- Base Button template -->
         <Style x:Key="FocusVisual">
@@ -31,7 +28,7 @@
         <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
         <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
         <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
-        
+
         <!--Round Button-->
         <Style x:Key="RoundButton" TargetType="{x:Type Button}">
             <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
@@ -46,7 +43,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ButtonBase}">
                         <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true" CornerRadius="20">
+                            BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true" CornerRadius="20">
                             <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -71,7 +68,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
+
         <!--Normal Button-->
 
         <Style x:Key="NormalButton" TargetType="{x:Type Button}">
@@ -87,7 +84,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ButtonBase}">
                         <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                    BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
                             <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -120,155 +117,39 @@
             <GradientStop Color="#393E46" Offset="3"/>
         </LinearGradientBrush>
     </Window.Background>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition MaxHeight="45"/>
-            <RowDefinition MaxHeight="55"/>
-            <RowDefinition/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!-- Name and Window controls -->
-        
+
         <DockPanel Grid.Row="0" LastChildFill="False">
-            
+
             <!--Title-->
             <TextBlock DockPanel.Dock="Left" HorizontalAlignment="Left"
-                Text="Crappy Launcher" VerticalAlignment="Center"
-                Foreground="#DFD0B8" FontFamily="./Fonts/#Lilita One"
-                FontSize="25" Margin="10"/>
-
-            <TextBlock  Text="Items marked with ⓘ are under construction." VerticalAlignment="Center"
-                        Foreground="White" FontFamily="./Fonts/#Lilita One"
+                        Text="Settings" VerticalAlignment="Center"
+                        Foreground="#DFD0B8" FontFamily="./Fonts/#Lilita One"
                         FontSize="20" Margin="10"/>
 
             <!--Close-->
             <Button Style="{DynamicResource NormalButton}" Width="25" Height="25"
                     Foreground="Gray" Margin="2" VerticalAlignment="Top" FontFamily="Segoe MDL2 Assets"
-                    Content="&#xE8BB;" DockPanel.Dock="Right" Command="{Binding CloseAppCommand}"/>
-            
+                    Content="&#xE8BB;" DockPanel.Dock="Right" Click="OnClose"/>
+
             <!--Window Mode-->
             <Button Style="{DynamicResource NormalButton}" Width="25" Height="25"
                     Foreground="Gray" Margin="2" VerticalAlignment="Top"
                     FontFamily="Segoe MDL2 Assets"
-                    DockPanel.Dock="Right" Command="{Binding WindowCommand}"
-                    Name="WindowButton"/>
+                    DockPanel.Dock="Right"
+                    Name="WindowButton" Click="OnWindowMode"/>
 
             <!--Minimize-->
             <Button Style="{DynamicResource NormalButton}" Width="25" Height="25"
                     Foreground="Gray" Margin="2" VerticalAlignment="Top" FontFamily="Segoe MDL2 Assets"
-                    Content="&#xE921;" DockPanel.Dock="Right" Command="{Binding MinimizeCommand}"/>
+                    Content="&#xE921;" DockPanel.Dock="Right" Click="OnMinimize"/>
         </DockPanel>
-        
-        <!-- Library, Rando Button and settings -->
-
-        <Grid Grid.Row="1">
-            <DockPanel Grid.Row="1" LastChildFill="True">
-                <!--Library-->
-                <Button Style="{DynamicResource RoundButton}" Width="145" Height="47" VerticalAlignment="Center" DockPanel.Dock="left"
-                        FontSize="30"  FontFamily="./Fonts/#Lilita One" Margin="10,0"
-                        Foreground="#DFD0B8" Content="Library▾" Name="LibraryButton" Click="OnLibraryDrop">
-                    <Button.ContextMenu>
-                        <ContextMenu DataContext="{Binding PlacementTarget.DataContext, 
-                                     RelativeSource={RelativeSource Self}}">
-                            <MenuItem Header="Add Games▾" Name="AddGameButton">
-                                <MenuItem Header="ⓘAdd Steam Library"/>
-                                <MenuItem Header="Add from Game File" Command="{Binding AddFileCommand}"/>
-                            </MenuItem>
-                            <MenuItem Header="ⓘCatagory▾">
-                                
-                            </MenuItem>
-                        </ContextMenu>
-                    </Button.ContextMenu>
-                </Button>
-
-                <!--Settings-->
-                <Button Style="{DynamicResource RoundButton}" Width="145" Height="47" VerticalAlignment="Center" DockPanel.Dock="Right"
-                        FontSize="30"  FontFamily="./Fonts/#Lilita One" Content="Settings"
-                        Foreground="#DFD0B8" Margin="10,0" Click="SettingsButton"/>
-
-                <!--Rando Button-->
-                <Button Style="{DynamicResource RoundButton}" Width="145" Height="47" VerticalAlignment="Center"
-                        Content="Random" FontSize="30" FontFamily="./Fonts/#Lilita One"
-                        Foreground="#DFD0B8" Command="{Binding RandomGameCommand}"/>
-            </DockPanel>
-        </Grid>
-        
-        <!--Games n Shi-->
-
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="80*"/>
-                <ColumnDefinition Width="15*"/>
-            </Grid.ColumnDefinitions>
-
-            <!--Games-->
-            
-            <ScrollViewer Grid.Column="0"
-                          VerticalScrollBarVisibility="Hidden"
-                          HorizontalScrollBarVisibility="Disabled"
-                          HorizontalAlignment="Stretch">
-                <ItemsControl ItemsSource="{Binding Games}"
-                              Margin="10,0,0,0"
-                              HorizontalAlignment="Stretch">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Width="142"
-                                  Margin="20">
-                                <StackPanel>
-                                    <!--Note to self: Launch Button-->
-                                    <Button Style="{DynamicResource NormalButton}"
-                                            Width="142"
-                                            Height="200"
-                                            Padding="10"
-                                            Tag="{Binding DataContext, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-                                            Command="{Binding DataContext.LaunchCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-                                            CommandParameter="{Binding Location}">
-                                        <Button.ContextMenu>
-                                            <ContextMenu>
-                                                <MenuItem Header="Remove"
-                                                          Command="{Binding PlacementTarget.Tag.RemoveGameCommand,
-                                                                    RelativeSource={RelativeSource AncestorType=ContextMenu}}"
-                                                          CommandParameter="{Binding PlacementTarget.DataContext,
-                                                                    RelativeSource={RelativeSource AncestorType=ContextMenu}}"/>
-                                            </ContextMenu>
-                                        </Button.ContextMenu>
-                                        <Image Source="{Binding Banner}" Stretch="Uniform"/>
-                                    </Button>
-                                    <TextBlock FontSize="20"
-                                               FontFamily="./Fonts/#Lilita One"
-                                               TextWrapping="Wrap"
-                                               Text="{Binding Name}"
-                                               HorizontalAlignment="Center"
-                                               Margin="5"
-                                               Foreground="#DFD0B8"/>
-                                </StackPanel>
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-
-                </ItemsControl>
-            </ScrollViewer>
-            
-            <!--Redirects-->
-            <StackPanel Grid.Column="1" Orientation="Vertical" Margin="0,20,0,0">
-                <Button Style="{DynamicResource NormalButton}" Height="23.5" Margin="5"
-                        Content="Report Bugs" FontSize="15" FontFamily="./Fonts/#Lilita One"
-                        Foreground="#DFD0B8" HorizontalAlignment="Center" Click="ReportBugs"/>
-                <Button Style="{DynamicResource NormalButton}" Height="23.5" Margin="5"
-                        Content="ⓘPatch Notes" FontSize="15" FontFamily="./Fonts/#Lilita One"
-                        Foreground="#DFD0B8" HorizontalAlignment="Center" Click="OpenPatchNotes"/>
-                <Button Style="{DynamicResource NormalButton}" Height="23.5" Margin="5"
-                        Content="Support" FontSize="15" FontFamily="./Fonts/#Lilita One"
-                        Foreground="#DFD0B8" HorizontalAlignment="Center" Click="OpenSupportPage"/>
-                <Button Style="{DynamicResource NormalButton}" Height="23.5" Margin="5"
-                        Content="Github Page" FontSize="15" FontFamily="./Fonts/#Lilita One"
-                        Foreground="#DFD0B8" HorizontalAlignment="Center" Click="OpenGithubPage"/>
-            </StackPanel>
-        </Grid>
     </Grid>
 </Window>
