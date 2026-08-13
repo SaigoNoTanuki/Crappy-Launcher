@@ -132,7 +132,7 @@
             <TextBlock DockPanel.Dock="Left" HorizontalAlignment="Left"
                         Text="Settings" VerticalAlignment="Center"
                         Foreground="#DFD0B8" FontFamily="./Fonts/#Lilita One"
-                        FontSize="20" Margin="10"/>
+                        FontSize="25" Margin="10,5,5,5"/>
 
             <!--Close-->
             <Button Style="{DynamicResource NormalButton}" Width="25" Height="25"
@@ -151,5 +151,17 @@
                     Foreground="Gray" Margin="2" VerticalAlignment="Top" FontFamily="Segoe MDL2 Assets"
                     Content="&#xE921;" DockPanel.Dock="Right" Click="OnMinimize"/>
         </DockPanel>
+
+        <StackPanel Grid.Row="1" Margin="10" Orientation="Vertical">
+            <TextBlock Text="Currently under Construction" FontSize="15" FontFamily="./Fonts/#Lilita One" 
+                       Foreground="#DFD0B8" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Change Config Directory" FontSize="20" FontFamily="Segoe UI" Foreground="gray"/>
+            <TextBox Text="Under Construction" Background="Transparent" BorderBrush="gray"
+                     Width="300" HorizontalAlignment="Left"
+                     FontFamily="Segoe UI" Foreground="gray"/>
+        </StackPanel>
+            
+            
     </Grid>
 </Window>
