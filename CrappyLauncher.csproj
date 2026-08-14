@@ -10,6 +10,7 @@
 
   <PropertyGroup>
     <ApplicationIcon>Resources\app.ico</ApplicationIcon>
+    <UseWindowsForms>True</UseWindowsForms>
   </PropertyGroup>
 
   <ItemGroup>
@@ -31,6 +32,7 @@
     <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="ValveKeyValue" Version="0.70.0.499" />
     <PackageReference Include="Velopack" Version="1.2.0" />
   </ItemGroup>
 

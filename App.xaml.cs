@@ -6,7 +6,7 @@ using Velopack.Sources;
 
 namespace CrappyLauncher
 {
-    public partial class App : Application
+    public partial class App : System.Windows.Application
     {
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -36,7 +36,7 @@ namespace CrappyLauncher
 
                 await mgr.DownloadUpdatesAsync(newVersion);
 
-                var result = MessageBox.Show(
+                var result = System.Windows.MessageBox.Show(
                     "An update has been downloaded. Restart to apply it?",
                     "Update Installed",
                     MessageBoxButton.YesNo);

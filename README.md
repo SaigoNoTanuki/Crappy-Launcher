@@ -14,3 +14,7 @@ Removals:
 	Removed the option to select a directory to Add games.
 		Reason: If a folder had multiple .exe files they all got added.
 				Until a solution is found, this feature will sit it out.
+
+Dependencies:
+	Velopack
+	ValveKeyValue

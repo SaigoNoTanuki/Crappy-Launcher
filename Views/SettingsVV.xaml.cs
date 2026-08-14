@@ -23,12 +23,12 @@ namespace CrappyLauncher.Views
         }
 
         //Window state
-        public void WindowStateChanged(Object? s, EventArgs e)
+        private void WindowStateChanged(Object? s, EventArgs e)
         {
             UpdateIcon();
         }
 
-        public void UpdateIcon()
+        private void UpdateIcon()
         {
             if (WindowState != WindowState.Maximized)
             {
@@ -42,17 +42,17 @@ namespace CrappyLauncher.Views
 
 
     // Window Controls
-        public void OnClose(Object s, RoutedEventArgs e)
+        private void OnClose(Object s, RoutedEventArgs e)
         {
             this.Close();
         }
 
-        public void OnMinimize(Object s, RoutedEventArgs e)
+        private void OnMinimize(Object s, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
         }
 
-        public void OnWindowMode(Object s, RoutedEventArgs e)
+        private void OnWindowMode(Object s, RoutedEventArgs e)
         {
             if (WindowState == WindowState.Normal)
             {
@@ -64,7 +64,7 @@ namespace CrappyLauncher.Views
             }
         }
 
-        public void OnMouseHold(Object s, MouseButtonEventArgs e)
+        private void OnMouseHold(Object s, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left && e.LeftButton == MouseButtonState.Pressed)
             {

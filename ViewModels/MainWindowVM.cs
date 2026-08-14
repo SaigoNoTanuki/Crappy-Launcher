@@ -1,11 +1,13 @@
 ﻿using CrappyLauncher.Scripts;
 using Microsoft.Win32;
+using WinForms = System.Windows.Forms;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Input;
+using ValveKeyValue;
 
 namespace CrappyLauncher.ViewModels
 {
@@ -24,6 +26,7 @@ namespace CrappyLauncher.ViewModels
         public ICommand LaunchCommand {  get; }
         public ICommand RemoveGameCommand { get; }
         public ICommand RandomGameCommand {  get; }
+        public ICommand AddSteamLibCommand { get; }
 
         public WindowState WindowState
         {
@@ -44,7 +47,8 @@ namespace CrappyLauncher.ViewModels
             AddFileCommand = new RelayCommand(GetFiles);
             RemoveGameCommand = new RelayCommand<GameVM>(RemoveGame);
             RandomGameCommand = new RelayCommand(LaunchRandom);
-            LaunchCommand = new RelayCommand<string>(LaunchGame);
+            LaunchCommand = new RelayCommand<GameVM>(LaunchGame);
+            AddSteamLibCommand = new RelayCommand(AddSteamLib);
             _games = new ObservableCollection<GameVM>();
 
             LoadList();
@@ -53,7 +57,7 @@ namespace CrappyLauncher.ViewModels
         //Gets game and adds to config
         public void GetFiles()
         {
-            OpenFileDialog fd = new OpenFileDialog();
+            Microsoft.Win32.OpenFileDialog fd = new Microsoft.Win32.OpenFileDialog();
             fd.Filter = "Executables | *.exe";
             fd.Multiselect = true;
             fd.Title = "Select game Executable(s)";
@@ -106,23 +110,71 @@ namespace CrappyLauncher.ViewModels
                 _games.Add(game);
         }
 
-        //Game Launching
+        //Adds steam Lib
+        
+        //Adds steam game info to the main list.
+        private void AddSteamLib()
+        {
+            WinForms.FolderBrowserDialog fd = new WinForms.FolderBrowserDialog();
 
-        private void LaunchGame(string path)
+            //fd.UseDescriptionForTitle = true;
+            fd.Description = "Select the stamapps Directory";
+
+            fd.ShowDialog();
+            try
+            {
+                foreach (string file in Directory.GetFiles(fd.SelectedPath, "*.acf"))
+                {
+                    using var stream = File.OpenRead(file);
+
+                    var serializer = KVSerializer.Create(KVSerializationFormat.KeyValues1Text);
+                    var data = serializer.Deserialize(stream);
+
+                    string name = data["name"].ToString();
+                    bool steamGame = true;
+                    string appID = data["appid"].ToString();
+
+                    Console.WriteLine(data);
+
+                    _games.Add(new GameVM(name,null,null,steamGame,appID));
+                }
+
+                SaveList();
+            }
+            catch(Exception e)
+            {
+                System.Windows.MessageBox.Show($"Could'nt add Steam games: \n{e.Message}");
+            }
+             
+            
+        }
+
+        private void LaunchGame(GameVM game)
         {
             try
             {
-                
-                Process.Start(new ProcessStartInfo
+                if(!game.SteamGame)
                 {
-                    FileName = path,
-                    WorkingDirectory = System.IO.Path.GetDirectoryName(path),
-                    UseShellExecute = true,
-                });
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = game.Location,
+                        WorkingDirectory = System.IO.Path.GetDirectoryName(game.Location),
+                        UseShellExecute = true,
+                    });
+                }
+                else
+                {
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = "steam://rungameid/"+game.AppID,
+                        UseShellExecute = true
+                    });
+                }
+                
             }
             catch (Exception e)
             {
-                MessageBox.Show($"Couldn't launch game:\n{e.Message}");
+                System.Windows.MessageBox.Show($"Couldn't launch game:\n{e.Message}");
             }
         }
 
@@ -134,17 +186,28 @@ namespace CrappyLauncher.ViewModels
 
             try
             {
-
-                Process.Start(new ProcessStartInfo
+                if (!_games[num].SteamGame)
                 {
-                    FileName = gamePath,
-                    WorkingDirectory = System.IO.Path.GetDirectoryName(gamePath),
-                    UseShellExecute = true,
-                });
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = gamePath,
+                        WorkingDirectory = System.IO.Path.GetDirectoryName(gamePath),
+                        UseShellExecute = true,
+                    });
+                }
+                else
+                {
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = "steam://rungameid/"+_games[num].AppID,
+                        UseShellExecute = true
+                    });
+                }
+                
             }
             catch (Exception e)
             {
-                MessageBox.Show($"Couldn't launch game:\n{e.Message}");
+                System.Windows.MessageBox.Show($"Couldn't launch game:\n{e.Message}");
             }
         }
 
@@ -160,7 +223,7 @@ namespace CrappyLauncher.ViewModels
         //Window controls
         public void CloseApp()
         {
-            Application.Current.Shutdown();
+            System.Windows.Application.Current.Shutdown();
         }
 
         public void MinimizeApp()

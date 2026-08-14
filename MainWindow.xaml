@@ -171,7 +171,7 @@
                         <ContextMenu DataContext="{Binding PlacementTarget.DataContext, 
                                      RelativeSource={RelativeSource Self}}">
                             <MenuItem Header="Add Games▾" Name="AddGameButton">
-                                <MenuItem Header="ⓘAdd Steam Library"/>
+                                <MenuItem Header="ⓘAdd Steam Library" Command="{Binding AddSteamLibCommand}"/>
                                 <MenuItem Header="Add from Game File" Command="{Binding AddFileCommand}"/>
                             </MenuItem>
                             <MenuItem Header="ⓘCatagory▾">
@@ -227,7 +227,7 @@
                                             Padding="10"
                                             Tag="{Binding DataContext, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
                                             Command="{Binding DataContext.LaunchCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-                                            CommandParameter="{Binding Location}">
+                                            CommandParameter="{Binding}">
                                         <Button.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem Header="Remove"

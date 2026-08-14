@@ -20,12 +20,12 @@ namespace CrappyLauncher
         }
 
         //Sets the state of the Window? icon.
-        public void WindowStateChanged(Object? s, EventArgs e)
+        private void WindowStateChanged(Object? s, EventArgs e)
         {
             UpdateIcon();
         }
 
-        public void UpdateIcon()
+        private void UpdateIcon()
         {
             if (WindowState != WindowState.Maximized)
             {
@@ -38,7 +38,7 @@ namespace CrappyLauncher
         }
 
         // Makes window moveable
-        public void OnMouseHold(Object s, MouseButtonEventArgs e)
+        private void OnMouseHold(Object s, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left && e.LeftButton == MouseButtonState.Pressed)
             {
@@ -48,7 +48,7 @@ namespace CrappyLauncher
  
 
         //Library Drop down
-        public void OnLibraryDrop(Object s, RoutedEventArgs e)
+        private void OnLibraryDrop(Object s, RoutedEventArgs e)
         {
             LibraryButton.ContextMenu.PlacementTarget = LibraryButton;
             LibraryButton.ContextMenu.IsOpen = true;
@@ -66,7 +66,7 @@ namespace CrappyLauncher
 
         private void OpenPatchNotes(Object s, RoutedEventArgs e)
         {
-
+            
         }
 
         private void OpenSupportPage(Object s, RoutedEventArgs e)
