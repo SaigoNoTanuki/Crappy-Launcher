@@ -27,6 +27,7 @@ namespace CrappyLauncher.ViewModels
         public ICommand RemoveGameCommand { get; }
         public ICommand RandomGameCommand {  get; }
         public ICommand AddSteamLibCommand { get; }
+        //public ICommand AddBannerCommand { get; }
 
         public WindowState WindowState
         {
@@ -49,6 +50,7 @@ namespace CrappyLauncher.ViewModels
             RandomGameCommand = new RelayCommand(LaunchRandom);
             LaunchCommand = new RelayCommand<GameVM>(LaunchGame);
             AddSteamLibCommand = new RelayCommand(AddSteamLib);
+            //AddBannerCommand = new RelayCommand<string>(AddBanner);
             _games = new ObservableCollection<GameVM>();
 
             LoadList();

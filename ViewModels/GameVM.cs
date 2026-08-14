@@ -8,12 +8,12 @@
         public bool SteamGame { get; set; }
         public string AppID { get; set; }
 
-        public GameVM(string name, string? location = null, string? banner = null, bool? steamGame = null, string? appID = null)
+        public GameVM(string name, string? location = null, string? banner = null, bool steamGame = false, string? appID = null)
         {
             Name = name;
             Location = location ?? "";
             Banner = banner ?? "./Resources/Images/DefaultBanner.png";
-            SteamGame = steamGame ?? false;
+            SteamGame = steamGame;
             AppID = appID ?? "";
         }
     }

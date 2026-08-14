@@ -64,11 +64,6 @@ namespace CrappyLauncher
             });
         }
 
-        private void OpenPatchNotes(Object s, RoutedEventArgs e)
-        {
-            
-        }
-
         private void OpenSupportPage(Object s, RoutedEventArgs e)
         {
             Process.Start(new ProcessStartInfo

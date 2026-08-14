@@ -137,10 +137,6 @@
                 Foreground="#DFD0B8" FontFamily="./Fonts/#Lilita One"
                 FontSize="25" Margin="10"/>
 
-            <TextBlock  Text="Items marked with ⓘ are under construction." VerticalAlignment="Center"
-                        Foreground="White" FontFamily="./Fonts/#Lilita One"
-                        FontSize="20" Margin="10"/>
-
             <!--Close-->
             <Button Style="{DynamicResource NormalButton}" Width="25" Height="25"
                     Foreground="Gray" Margin="2" VerticalAlignment="Top" FontFamily="Segoe MDL2 Assets"
@@ -171,7 +167,7 @@
                         <ContextMenu DataContext="{Binding PlacementTarget.DataContext, 
                                      RelativeSource={RelativeSource Self}}">
                             <MenuItem Header="Add Games▾" Name="AddGameButton">
-                                <MenuItem Header="ⓘAdd Steam Library" Command="{Binding AddSteamLibCommand}"/>
+                                <MenuItem Header="Add Steam Library" Command="{Binding AddSteamLibCommand}"/>
                                 <MenuItem Header="Add from Game File" Command="{Binding AddFileCommand}"/>
                             </MenuItem>
                             <MenuItem Header="ⓘCatagory▾">
@@ -235,7 +231,12 @@
                                                                     RelativeSource={RelativeSource AncestorType=ContextMenu}}"
                                                           CommandParameter="{Binding PlacementTarget.DataContext,
                                                                     RelativeSource={RelativeSource AncestorType=ContextMenu}}"/>
-                                            </ContextMenu>
+                                                <!-- <MenuItem Header="Add Banner"
+                                                          Command="{Binding PlacementTarget.Tag.AddBannerCommand,
+                                                          RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+                                                          CommandParameter="{Binding PlacementTarget.DataContext,
+                                                          RelativeSource={RelativeSource AncestorType=ContextMenu}}"/> -->
+                                            </ContextMenu >
                                         </Button.ContextMenu>
                                         <Image Source="{Binding Banner}" Stretch="Uniform"/>
                                     </Button>
@@ -259,9 +260,6 @@
                 <Button Style="{DynamicResource NormalButton}" Height="23.5" Margin="5"
                         Content="Report Bugs" FontSize="15" FontFamily="./Fonts/#Lilita One"
                         Foreground="#DFD0B8" HorizontalAlignment="Center" Click="ReportBugs"/>
-                <Button Style="{DynamicResource NormalButton}" Height="23.5" Margin="5"
-                        Content="ⓘPatch Notes" FontSize="15" FontFamily="./Fonts/#Lilita One"
-                        Foreground="#DFD0B8" HorizontalAlignment="Center" Click="OpenPatchNotes"/>
                 <Button Style="{DynamicResource NormalButton}" Height="23.5" Margin="5"
                         Content="Support" FontSize="15" FontFamily="./Fonts/#Lilita One"
                         Foreground="#DFD0B8" HorizontalAlignment="Center" Click="OpenSupportPage"/>

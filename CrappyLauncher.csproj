@@ -29,6 +29,7 @@
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Config\" />
+    <Folder Include="Resources\ReadMe assets\" />
     <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>
