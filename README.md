@@ -10,20 +10,14 @@ NOTE: Currently the Setup.exe installs the Launcher in C:/Users/User/AppData/Loc
 Highlights (Alpha 1.0.2):
 
 Additions:
-	Added Settings Window.
-	Added a way to import local steam library.
+	Added a way to change Banner.
+		Right Click on game.
+	Fixed spelling mistake.
+		"Catagory" -> "Category".
 
 ![HomePage](./Resources/ReadMeAssets/additions1.png)
 ![HomePage](./Resources/ReadMeAssets/additions2.png)
 	
-Removals:
-	Removed the option to select a directory to Add games.
-		Reason: If a folder had multiple .exe files they all got added.
-				Until a solution is found, this feature will sit it out.
-	Removed Patch Notes button.
-		Reason: Felt unnecessary, Might be added back in the future.
-
-![HomePage](./Resources/ReadMeAssets/removals.png)
 
 Dependencies:
 	Velopack
