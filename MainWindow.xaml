@@ -170,7 +170,7 @@
                                 <MenuItem Header="Add Steam Library" Command="{Binding AddSteamLibCommand}"/>
                                 <MenuItem Header="Add from Game File" Command="{Binding AddFileCommand}"/>
                             </MenuItem>
-                            <MenuItem Header="ⓘCatagory▾">
+                            <MenuItem Header="ⓘCategory▾">
                                 
                             </MenuItem>
                         </ContextMenu>
@@ -231,11 +231,11 @@
                                                                     RelativeSource={RelativeSource AncestorType=ContextMenu}}"
                                                           CommandParameter="{Binding PlacementTarget.DataContext,
                                                                     RelativeSource={RelativeSource AncestorType=ContextMenu}}"/>
-                                                <!-- <MenuItem Header="Add Banner"
+                                                <MenuItem Header="Change Banner"
                                                           Command="{Binding PlacementTarget.Tag.AddBannerCommand,
                                                           RelativeSource={RelativeSource AncestorType=ContextMenu}}"
                                                           CommandParameter="{Binding PlacementTarget.DataContext,
-                                                          RelativeSource={RelativeSource AncestorType=ContextMenu}}"/> -->
+                                                          RelativeSource={RelativeSource AncestorType=ContextMenu}}"/>
                                             </ContextMenu >
                                         </Button.ContextMenu>
                                         <Image Source="{Binding Banner}" Stretch="Uniform"/>

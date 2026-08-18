@@ -1,12 +1,27 @@
-﻿namespace CrappyLauncher.ViewModels
+﻿using System.ComponentModel;
+
+namespace CrappyLauncher.ViewModels
 {
-    class GameVM
+    class GameVM : ViewModelBase
     {
         public string Name { get; set; }
-        public string Banner { get; set; }
+        public string _banner;
         public string Location { get; set; }
         public bool SteamGame { get; set; }
         public string AppID { get; set; }
+
+        public string Banner
+        {
+            get => _banner;
+            set
+            {
+                if (_banner == value)
+                    return;
+
+                _banner = value;
+                OnPropertyChanged();
+            }
+        }
 
         public GameVM(string name, string? location = null, string? banner = null, bool steamGame = false, string? appID = null)
         {
