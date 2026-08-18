@@ -7,16 +7,12 @@ seeing how some games require their own seperate launcher.
 
 NOTE: Currently the Setup.exe installs the Launcher in C:/Users/User/AppData/Local/CrappyLauncher
 
-Highlights (Alpha 1.0.2):
+Highlights (Release 1.0.5):
 
 Additions:
-	Added a way to change Banner.
-		Right Click on game.
-	Fixed spelling mistake.
-		"Catagory" -> "Category".
+	Added a way to search banners online.
 
 ![HomePage](./Resources/ReadMeAssets/additions1.png)
-![HomePage](./Resources/ReadMeAssets/additions2.png)
 	
 
 Dependencies:

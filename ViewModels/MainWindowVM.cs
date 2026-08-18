@@ -28,6 +28,7 @@ namespace CrappyLauncher.ViewModels
         public ICommand RandomGameCommand {  get; }
         public ICommand AddSteamLibCommand { get; }
         public ICommand AddBannerCommand { get; }
+        public ICommand FindBannerCommand { get; }
 
         public WindowState WindowState
         {
@@ -51,6 +52,7 @@ namespace CrappyLauncher.ViewModels
             LaunchCommand = new RelayCommand<GameVM>(LaunchGame);
             AddSteamLibCommand = new RelayCommand(AddSteamLib);
             AddBannerCommand = new RelayCommand<GameVM>(AddBanner);
+            FindBannerCommand = new RelayCommand<GameVM>(FindBanner);
             _games = new ObservableCollection<GameVM>();
 
             LoadList();
@@ -238,6 +240,17 @@ namespace CrappyLauncher.ViewModels
 
                 SaveList();
             }
+        }
+
+        //Find Banner
+
+        private void FindBanner(GameVM game)
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = $"https://www.steamgriddb.com/search/grids?term={game.Name}",
+                UseShellExecute = true,
+            });
         }
 
 

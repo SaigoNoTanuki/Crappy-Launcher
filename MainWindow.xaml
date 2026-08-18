@@ -236,6 +236,11 @@
                                                           RelativeSource={RelativeSource AncestorType=ContextMenu}}"
                                                           CommandParameter="{Binding PlacementTarget.DataContext,
                                                           RelativeSource={RelativeSource AncestorType=ContextMenu}}"/>
+                                                <MenuItem Header="Find Banner"
+                                                          Command="{Binding PlacementTarget.Tag.FindBannerCommand,
+                                                          RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+                                                          CommandParameter="{Binding PlacementTarget.DataContext,
+                                                          RelativeSource={RelativeSource AncestorType=ContextMenu}}"/>
                                             </ContextMenu >
                                         </Button.ContextMenu>
                                         <Image Source="{Binding Banner}" Stretch="Uniform"/>
