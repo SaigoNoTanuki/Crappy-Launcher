@@ -14,6 +14,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Resources\ReadMe assets\**" />
+    <EmbeddedResource Remove="Resources\ReadMe assets\**" />
+    <None Remove="Resources\ReadMe assets\**" />
+    <Page Remove="Resources\ReadMe assets\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Resources\app.ico" />
     <None Remove="Resources\Images\DefaultBanner.png" />
   </ItemGroup>
@@ -29,7 +36,6 @@
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Config\" />
-    <Folder Include="Resources\ReadMe assets\" />
     <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>

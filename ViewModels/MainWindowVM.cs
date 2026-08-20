@@ -8,6 +8,8 @@ using System.Text.Json;
 using System.Windows;
 using System.Windows.Input;
 using ValveKeyValue;
+using Microsoft.VisualBasic;
+using CrappyLauncher.Views;
 
 namespace CrappyLauncher.ViewModels
 {
@@ -16,8 +18,10 @@ namespace CrappyLauncher.ViewModels
         public WindowState windowState;
 
         private readonly ObservableCollection<GameVM> _games;
+        private readonly ObservableCollection<GenreVM> _genre;
 
         public IEnumerable<GameVM> Games => _games;
+        public IEnumerable<GenreVM> Genre => _genre;
 
         public ICommand CloseAppCommand { get; }
         public ICommand MinimizeCommand { get; }
@@ -29,6 +33,8 @@ namespace CrappyLauncher.ViewModels
         public ICommand AddSteamLibCommand { get; }
         public ICommand AddBannerCommand { get; }
         public ICommand FindBannerCommand { get; }
+        public ICommand AddGenreCommand { get; }
+        public ICommand OpenModalCommand { get; }
 
         public WindowState WindowState
         {
@@ -53,9 +59,14 @@ namespace CrappyLauncher.ViewModels
             AddSteamLibCommand = new RelayCommand(AddSteamLib);
             AddBannerCommand = new RelayCommand<GameVM>(AddBanner);
             FindBannerCommand = new RelayCommand<GameVM>(FindBanner);
+            OpenModalCommand = new RelayCommand<GameVM>(OpenModal);
+            AddGenreCommand = new RelayCommand(AddGenre);
+
             _games = new ObservableCollection<GameVM>();
+            _genre = new ObservableCollection<GenreVM>();
 
             LoadList();
+            LoadGenre();
         }
 
         //Gets game and adds to config
@@ -100,28 +111,86 @@ namespace CrappyLauncher.ViewModels
             string folder = System.IO.Path.Combine(appData, "Crappy Launcher");
             string file = System.IO.Path.Combine(folder, "Games.json");
 
-            if (!File.Exists(file))
-                return;
+            if (!File.Exists(file)) return;
 
             string json = File.ReadAllText(file);
 
             var games = JsonSerializer.Deserialize<List<GameVM>>(json);
 
-            if (games == null)
-                return;
+            if (games == null) return;
 
             foreach (var game in games)
+            {
+                game.Genre ??= new();
                 _games.Add(game);
+            }  
+        }
+
+        //Add Genre
+
+        private void AddGenre()
+        {
+            string name = Interaction.InputBox("Enter Genre name", "Add Genre");
+
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                System.Windows.MessageBox.Show("Please Enter a valid name","Invalid Name",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            _genre.Add(new GenreVM(name));
+
+            SaveGenre();
+        }
+
+        private void SaveGenre()
+        {
+            string appData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+
+            string folder = System.IO.Path.Combine(appData, "Crappy Launcher");
+            string file = System.IO.Path.Combine(folder, "Genre.json");
+
+            Directory.CreateDirectory(folder);
+
+            string json = JsonSerializer.Serialize(_genre, new JsonSerializerOptions { WriteIndented = true });
+
+            File.WriteAllText(file, json);
+        }
+
+        private void LoadGenre()
+        {
+            string appData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+
+            string folder = System.IO.Path.Combine(appData, "Crappy Launcher");
+            string file = System.IO.Path.Combine(folder, "Genre.json");
+
+            if (!File.Exists(file)) return;
+
+            string json = File.ReadAllText(file);
+
+            var genre = JsonSerializer.Deserialize<List<GenreVM>>(json);
+
+            if (genre == null) return;
+
+            foreach (var g in genre)
+                _genre.Add(g);
+        }
+
+        //Prompt with Modal
+
+        private void OpenModal(GameVM game)
+        {
+            var vm = new GenreSelectVM(game, _genre, SaveList);
+            var selectionModal = new GenreSelectVV { DataContext = vm };
+            selectionModal.Show();
         }
 
         //Adds steam Lib
-        
-        //Adds steam game info to the main list.
+
         private void AddSteamLib()
         {
             WinForms.FolderBrowserDialog fd = new WinForms.FolderBrowserDialog();
 
-            //fd.UseDescriptionForTitle = true;
             fd.Description = "Select the stamapps Directory";
 
             fd.ShowDialog();
@@ -140,7 +209,7 @@ namespace CrappyLauncher.ViewModels
 
                     Console.WriteLine(data);
 
-                    _games.Add(new GameVM(name,null,null,steamGame,appID));
+                    _games.Add(new GameVM(name, null, null, steamGame, appID));
                 }
 
                 SaveList();
@@ -253,6 +322,14 @@ namespace CrappyLauncher.ViewModels
             });
         }
 
+        //Add genre to game
+
+        private void AddGameGenre(GameVM game)
+        {
+            string genre = Interaction.InputBox("Enter genre", "Please make sure genre is Identical to existing genre");
+
+            game.Genre.Add(genre);
+        }
 
         //Window controls
         public void CloseApp()

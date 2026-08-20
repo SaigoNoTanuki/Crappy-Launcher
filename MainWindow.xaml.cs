@@ -88,5 +88,10 @@ namespace CrappyLauncher
             SettingsVV settingsWindow = new SettingsVV();
             settingsWindow.Show();
         }
+
+        private void MenuItem_SourceUpdated(object sender, System.Windows.Data.DataTransferEventArgs e)
+        {
+
+        }
     }
 }

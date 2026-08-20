@@ -170,8 +170,16 @@
                                 <MenuItem Header="Add Steam Library" Command="{Binding AddSteamLibCommand}"/>
                                 <MenuItem Header="Add from Game File" Command="{Binding AddFileCommand}"/>
                             </MenuItem>
-                            <MenuItem Header="ⓘCategory▾">
-                                
+                            <MenuItem Header="Make new Genre" Command="{Binding AddGenreCommand}"/>
+                            <MenuItem Header="ⓘFilter by Genre▾" ItemsSource="{Binding Genre}">
+                                <MenuItem.ItemContainerStyle>
+                                    <Style TargetType="MenuItem">
+                                        <Setter Property="Header" Value="{Binding GenreName}"/>
+                                        <Setter Property="Command" Value="{Binding DataContext.FilterCommand, 
+                                                RelativeSource={RelativeSource AncestorType=ContextMenu}}"/>
+                                        <Setter Property="CommandParameter" Value="{Binding}"/>
+                                    </Style>
+                                </MenuItem.ItemContainerStyle>
                             </MenuItem>
                         </ContextMenu>
                     </Button.ContextMenu>
@@ -238,6 +246,11 @@
                                                           RelativeSource={RelativeSource AncestorType=ContextMenu}}"/>
                                                 <MenuItem Header="Find Banner"
                                                           Command="{Binding PlacementTarget.Tag.FindBannerCommand,
+                                                          RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+                                                          CommandParameter="{Binding PlacementTarget.DataContext,
+                                                          RelativeSource={RelativeSource AncestorType=ContextMenu}}"/>
+                                                <MenuItem Header="Add Genre" ItemsSource="{Binding Genre}"
+                                                          Command="{Binding PlacementTarget.Tag.OpenModalCommand,
                                                           RelativeSource={RelativeSource AncestorType=ContextMenu}}"
                                                           CommandParameter="{Binding PlacementTarget.DataContext,
                                                           RelativeSource={RelativeSource AncestorType=ContextMenu}}"/>

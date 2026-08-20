@@ -1,20 +1,31 @@
-Crappy Launcher is a simple game Launcher, It's main feature being the ability to launch a random game.
-
-Crappy launcher is made to bring all your games into one place, 
-seeing how some games require their own seperate launcher.
-
+[Description]  
+  
+Crappy Launcher is a simple game Launcher with the ability to pick a random game.<br>
+CL brings all your games in one place,<br>
+so you don't have to open a different launcher for every game.<br>
+*Games will still launch through their required launcher.<br>
+  
 ![HomePage](./Resources/ReadMeAssets/homepage.png)
-
-NOTE: Currently the Setup.exe installs the Launcher in C:/Users/User/AppData/Local/CrappyLauncher
-
+  
+[Notes]  
+  
+Launcher installs in C:/Users/User/AppData/Local/CrappyLauncher due to Velopack limitations. (Safe to move)<br>
+Config files live in C:/Users/User/AppData/Roaming/Crappy Launcher. (DO NOT MOVE)<br>
+  
+For Alpha versions, if updating the app causes it to no<br>
+longer launch, Consider Deleting the config files and retrying.<br>
+  
 Highlights (Release 1.0.5):
+  
+Additions:<br>
+	Added a way to search banners online (SteamGridDB).<br>
+	Added a way to create genre.<br>
+	Added a way to add genre to games.<br> 
 
-Additions:
-	Added a way to search banners online.
-
-![HomePage](./Resources/ReadMeAssets/additions1.png)
+![Additions](./Resources/ReadMeAssets/additions1.png)  
+![Additions](./Resources/ReadMeAssets/additions2.png)  
+![Additions](./Resources/ReadMeAssets/additions3.png)  
 	
-
-Dependencies:
-	Velopack
-	ValveKeyValue
+Dependencies:<br>
+	Velopack<br>
+	ValveKeyValue<br>

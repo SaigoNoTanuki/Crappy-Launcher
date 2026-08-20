@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace CrappyLauncher.ViewModels
 {
@@ -9,6 +10,7 @@ namespace CrappyLauncher.ViewModels
         public string Location { get; set; }
         public bool SteamGame { get; set; }
         public string AppID { get; set; }
+        public ObservableCollection<string> _genre = new();
 
         public string Banner
         {
@@ -23,13 +25,20 @@ namespace CrappyLauncher.ViewModels
             }
         }
 
-        public GameVM(string name, string? location = null, string? banner = null, bool steamGame = false, string? appID = null)
+        public ObservableCollection<string> Genre
+        {
+            get => _genre;
+            set => _genre = value ?? new();
+        }
+
+        public GameVM(string name, string? location = null, string? banner = null, bool steamGame = false, string? appID = null, ObservableCollection<string>? genre = null)
         {
             Name = name;
             Location = location ?? "";
             Banner = banner ?? "./Resources/Images/DefaultBanner.png";
             SteamGame = steamGame;
             AppID = appID ?? "";
+            Genre = genre;
         }
     }
 }
