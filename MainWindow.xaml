@@ -165,13 +165,14 @@
                         Foreground="#DFD0B8" Content="Library▾" Name="LibraryButton" Click="OnLibraryDrop">
                     <Button.ContextMenu>
                         <ContextMenu DataContext="{Binding PlacementTarget.DataContext, 
-                                     RelativeSource={RelativeSource Self}}">
+                                     RelativeSource={RelativeSource Self}}"
+                                     Placement="Right">
                             <MenuItem Header="Add Games▾" Name="AddGameButton">
                                 <MenuItem Header="Add Steam Library" Command="{Binding AddSteamLibCommand}"/>
                                 <MenuItem Header="Add from Game File" Command="{Binding AddFileCommand}"/>
                             </MenuItem>
                             <MenuItem Header="Make new Genre" Command="{Binding AddGenreCommand}"/>
-                            <MenuItem Header="ⓘFilter by Genre▾" ItemsSource="{Binding Genre}">
+                            <MenuItem Header="Filter by Genre▾" ItemsSource="{Binding Genre}">
                                 <MenuItem.ItemContainerStyle>
                                     <Style TargetType="MenuItem">
                                         <Setter Property="Header" Value="{Binding GenreName}"/>
@@ -233,7 +234,7 @@
                                             Command="{Binding DataContext.LaunchCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
                                             CommandParameter="{Binding}">
                                         <Button.ContextMenu>
-                                            <ContextMenu>
+                                            <ContextMenu Placement="Right">
                                                 <MenuItem Header="Remove"
                                                           Command="{Binding PlacementTarget.Tag.RemoveGameCommand,
                                                                     RelativeSource={RelativeSource AncestorType=ContextMenu}}"

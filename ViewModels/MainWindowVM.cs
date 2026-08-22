@@ -10,6 +10,8 @@ using System.Windows.Input;
 using ValveKeyValue;
 using Microsoft.VisualBasic;
 using CrappyLauncher.Views;
+using System.ComponentModel;
+using System.Windows.Data;
 
 namespace CrappyLauncher.ViewModels
 {
@@ -19,6 +21,10 @@ namespace CrappyLauncher.ViewModels
 
         private readonly ObservableCollection<GameVM> _games;
         private readonly ObservableCollection<GenreVM> _genre;
+
+        private readonly ICollectionView _gamesView;
+        public ICollectionView GamesView => _gamesView;
+        private GenreVM? _activeFilter;
 
         public IEnumerable<GameVM> Games => _games;
         public IEnumerable<GenreVM> Genre => _genre;
@@ -35,6 +41,7 @@ namespace CrappyLauncher.ViewModels
         public ICommand FindBannerCommand { get; }
         public ICommand AddGenreCommand { get; }
         public ICommand OpenModalCommand { get; }
+        public ICommand FilterCommand { get; }
 
         public WindowState WindowState
         {
@@ -61,9 +68,12 @@ namespace CrappyLauncher.ViewModels
             FindBannerCommand = new RelayCommand<GameVM>(FindBanner);
             OpenModalCommand = new RelayCommand<GameVM>(OpenModal);
             AddGenreCommand = new RelayCommand(AddGenre);
+            FilterCommand = new RelayCommand<GenreVM>(SetFilter);
 
             _games = new ObservableCollection<GameVM>();
             _genre = new ObservableCollection<GenreVM>();
+            _gamesView = CollectionViewSource.GetDefaultView(_games);
+            _gamesView.Filter = FilterByGenre;
 
             LoadList();
             LoadGenre();
@@ -174,6 +184,22 @@ namespace CrappyLauncher.ViewModels
 
             foreach (var g in genre)
                 _genre.Add(g);
+        }
+
+        //Filter by genre
+
+        private bool FilterByGenre(Object o)
+        {
+            if (_activeFilter == null) return true;
+
+            if (o is not GameVM game) return false;
+            return game.Genre.Contains(_activeFilter.GenreName);
+        }
+
+        private void SetFilter(GenreVM genre)
+        {
+            _activeFilter = (_activeFilter == genre) ? null : genre;
+            _gamesView.Refresh();
         }
 
         //Prompt with Modal
