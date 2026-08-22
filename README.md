@@ -23,10 +23,16 @@ Additions: <br>
 	Added a way to add genre to games.<br> 
 	Added a way to Filter through genre.<br>
 	Changed Context menu style.<br>
+	Updated Settings Page.<br>
+		Added a way to clear Games List.<br>
+		Added a way to clear Genre List.<br>
+	Other minor changes.<br>
 
 ![Additions](./Resources/ReadMeAssets/additions1.png)  
 
 ![Additions](./Resources/ReadMeAssets/additions2.png)  
+
+![Additions](./Resources/ReadMeAssets/additions3.png)  
 	
 Dependencies: <br>
 	Velopack<br>

@@ -122,6 +122,7 @@
         <Grid.RowDefinitions>
             <RowDefinition MaxHeight="45"/>
             <RowDefinition Height="*"/>
+            <RowDefinition MaxHeight="20"/>
         </Grid.RowDefinitions>
 
         <!-- Name and Window controls -->
@@ -153,15 +154,30 @@
         </DockPanel>
 
         <StackPanel Grid.Row="1" Margin="10" Orientation="Vertical">
-            <TextBlock Text="Currently under Construction" FontSize="15" FontFamily="./Fonts/#Lilita One" 
-                       Foreground="#DFD0B8" Margin="0,0,0,10"/>
-
-            <TextBlock Text="Change Config Directory" FontSize="20" FontFamily="Segoe UI" Foreground="gray"/>
-            <TextBox Text="Under Construction" Background="Transparent" BorderBrush="gray"
-                     Width="300" HorizontalAlignment="Left"
-                     FontFamily="Segoe UI" Foreground="gray"/>
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Delete Games List" FontSize="20" FontFamily="Segoe UI"
+                           Foreground="#DFD0B8"/>
+                <Button Content="Delete List" FontFamily="Segoe UI" FontSize="15"
+                        MaxWidth="100" Width="auto" Padding="5,2,5,2"
+                        Height="auto" HorizontalAlignment="Left" Margin="10,5,10,5"
+                        Style="{DynamicResource NormalButton}" Background="LightGray"
+                        Command="{Binding ClearGamesCommand}"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Delete Genre List" FontSize="20" FontFamily="Segoe UI"
+                           Foreground="#DFD0B8"/>
+                <Button Content="Delete List" FontFamily="Segoe UI" FontSize="15"
+                        MaxWidth="100" Width="auto" Padding="5,2,5,2"
+                        Height="auto" HorizontalAlignment="Left" Margin="10,5,10,5"
+                        Style="{DynamicResource NormalButton}" Background="LightGray"
+                        Command="{Binding ClearGenreCommand}"/>
+            </StackPanel>
         </StackPanel>
-            
+
+        <Grid Grid.Row="2">
+            <TextBlock Text="Release v1.0.5" VerticalAlignment="Center" HorizontalAlignment="Left"
+                       Margin="10,0,0,0" Foreground="Gray" FontFamily="Segoe UI"/>
+        </Grid>
             
     </Grid>
 </Window>

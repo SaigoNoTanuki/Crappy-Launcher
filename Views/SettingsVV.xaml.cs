@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CrappyLauncher.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -16,6 +17,9 @@ namespace CrappyLauncher.Views
     {
         public SettingsVV()
         {
+            MainWindowVM vm = new MainWindowVM();
+            DataContext = vm;
+
             InitializeComponent();
 
             UpdateIcon();

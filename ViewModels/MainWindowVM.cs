@@ -42,6 +42,8 @@ namespace CrappyLauncher.ViewModels
         public ICommand AddGenreCommand { get; }
         public ICommand OpenModalCommand { get; }
         public ICommand FilterCommand { get; }
+        public ICommand ClearGamesCommand { get; }
+        public ICommand ClearGenreCommand { get; }
 
         public WindowState WindowState
         {
@@ -69,6 +71,8 @@ namespace CrappyLauncher.ViewModels
             OpenModalCommand = new RelayCommand<GameVM>(OpenModal);
             AddGenreCommand = new RelayCommand(AddGenre);
             FilterCommand = new RelayCommand<GenreVM>(SetFilter);
+            ClearGamesCommand = new RelayCommand(ClearGames);
+            ClearGenreCommand = new RelayCommand(ClearGenre);
 
             _games = new ObservableCollection<GameVM>();
             _genre = new ObservableCollection<GenreVM>();
@@ -184,6 +188,32 @@ namespace CrappyLauncher.ViewModels
 
             foreach (var g in genre)
                 _genre.Add(g);
+        }
+
+        //Clear lists
+
+        private void ClearGames()
+        {
+            _games.Clear();
+
+            SaveList();
+            RestartApp();
+        }
+
+        private void ClearGenre()
+        {
+            _genre.Clear();
+
+            SaveGenre();
+            RestartApp();
+        }
+
+        //Restart app
+
+        private void RestartApp()
+        {
+            WinForms.Application.Restart();
+            System.Windows.Application.Current.Shutdown();
         }
 
         //Filter by genre
