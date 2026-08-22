@@ -19,16 +19,16 @@ I recommend keeping all your banners in a "Banners" foolder in CL's root directo
   
 Highlights (Release 1.0.5):
   
--Additions:
- -Added a way to search banners online (SteamGridDB).
- -Added a way to create genre.
- -Added a way to add genre to games.
- -Added a way to Filter through genre.
- -Changed Context menu style.
- -Updated Settings Page.
-  -Added a way to clear Games List.
-  -Added a way to clear Genre List.
- -Other minor changes.
+-Additions: <br>
+	-Added a way to search banners online (SteamGridDB).<br>
+	-Added a way to create genre.<br>
+	-Added a way to add genre to games.<br> 
+	-Added a way to Filter through genre.<br>
+	-Changed Context menu style.<br>
+	-Updated Settings Page.<br>
+		--Added a way to clear Games List.<br>
+		--Added a way to clear Genre List.<br>
+	-Other minor changes.
 
 ![Additions](./Resources/ReadMeAssets/additions1.png)  
 
@@ -36,6 +36,6 @@ Highlights (Release 1.0.5):
 
 ![Additions](./Resources/ReadMeAssets/additions3.png)  
 	
--Dependencies:
- -Velopack
- -ValveKeyValue
+-Dependencies: <br>
+	-Velopack<br>
+	-ValveKeyValue<br>
