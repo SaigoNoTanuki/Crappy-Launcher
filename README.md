@@ -14,6 +14,8 @@ Config files live in C:/Users/User/AppData/Roaming/Crappy Launcher. (DO NOT MOVE
   
 For Alpha versions, if updating the app causes it to no- <br>
 longer launch, Consider Deleting the config files and retrying.<br>
+
+I recommend keeping all your banners in a "Banners" foolder in CL's root directory.
   
 Highlights (Release 1.0.5):
   
