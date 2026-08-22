@@ -22,12 +22,11 @@ Additions: <br>
 	Added a way to create genre.<br>
 	Added a way to add genre to games.<br> 
 	Added a way to Filter through genre.<br>
+	Changed Context menu style.<br>
 
 ![Additions](./Resources/ReadMeAssets/additions1.png)  
 
 ![Additions](./Resources/ReadMeAssets/additions2.png)  
-
-![Additions](./Resources/ReadMeAssets/additions3.png)  
 	
 Dependencies: <br>
 	Velopack<br>

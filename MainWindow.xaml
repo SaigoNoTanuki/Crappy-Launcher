@@ -162,23 +162,32 @@
                 <!--Library-->
                 <Button Style="{DynamicResource RoundButton}" Width="145" Height="47" VerticalAlignment="Center" DockPanel.Dock="left"
                         FontSize="30"  FontFamily="./Fonts/#Lilita One" Margin="10,0"
-                        Foreground="#DFD0B8" Content="Library▾" Name="LibraryButton" Click="OnLibraryDrop">
+                        Foreground="#DFD0B8" Content="Library" Name="LibraryButton" Click="OnLibraryDrop">
                     <Button.ContextMenu>
                         <ContextMenu DataContext="{Binding PlacementTarget.DataContext, 
                                      RelativeSource={RelativeSource Self}}"
-                                     Placement="Right">
-                            <MenuItem Header="Add Games▾" Name="AddGameButton">
+                                     Placement="Right"
+                                     Foreground="#DFD0B8">
+                            <ContextMenu.Resources>
+                                <Style TargetType="MenuItem">
+                                    <Setter Property="Background" Value="#393E46"/>
+                                    <Setter Property="BorderThickness" Value="0"/>
+                                </Style>
+                            </ContextMenu.Resources>
+                            <MenuItem Header="Add Games" Name="AddGameButton">
                                 <MenuItem Header="Add Steam Library" Command="{Binding AddSteamLibCommand}"/>
                                 <MenuItem Header="Add from Game File" Command="{Binding AddFileCommand}"/>
                             </MenuItem>
                             <MenuItem Header="Make new Genre" Command="{Binding AddGenreCommand}"/>
-                            <MenuItem Header="Filter by Genre▾" ItemsSource="{Binding Genre}">
+                            <MenuItem Header="Filter by Genre" ItemsSource="{Binding Genre}">
                                 <MenuItem.ItemContainerStyle>
                                     <Style TargetType="MenuItem">
                                         <Setter Property="Header" Value="{Binding GenreName}"/>
                                         <Setter Property="Command" Value="{Binding DataContext.FilterCommand, 
                                                 RelativeSource={RelativeSource AncestorType=ContextMenu}}"/>
                                         <Setter Property="CommandParameter" Value="{Binding}"/>
+                                        <Setter Property="Background" Value="#393E46"/>
+                                        <Setter Property="BorderThickness" Value="0"/>
                                     </Style>
                                 </MenuItem.ItemContainerStyle>
                             </MenuItem>
@@ -234,27 +243,39 @@
                                             Command="{Binding DataContext.LaunchCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
                                             CommandParameter="{Binding}">
                                         <Button.ContextMenu>
-                                            <ContextMenu Placement="Right">
+                                            <ContextMenu Placement="Right"
+                                                         Foreground="#DFD0B8"
+                                                         >
+                                                <ContextMenu.Resources>
+                                                    <Style TargetType="MenuItem">
+                                                        <Setter Property="Background" Value="#393E46"/>
+                                                        <Setter Property="BorderThickness" Value="0"/>
+                                                    </Style>
+                                                </ContextMenu.Resources>
                                                 <MenuItem Header="Remove"
                                                           Command="{Binding PlacementTarget.Tag.RemoveGameCommand,
                                                                     RelativeSource={RelativeSource AncestorType=ContextMenu}}"
                                                           CommandParameter="{Binding PlacementTarget.DataContext,
-                                                                    RelativeSource={RelativeSource AncestorType=ContextMenu}}"/>
+                                                                    RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+                                                          />
                                                 <MenuItem Header="Change Banner"
                                                           Command="{Binding PlacementTarget.Tag.AddBannerCommand,
                                                           RelativeSource={RelativeSource AncestorType=ContextMenu}}"
                                                           CommandParameter="{Binding PlacementTarget.DataContext,
-                                                          RelativeSource={RelativeSource AncestorType=ContextMenu}}"/>
+                                                          RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+                                                          />
                                                 <MenuItem Header="Find Banner"
                                                           Command="{Binding PlacementTarget.Tag.FindBannerCommand,
                                                           RelativeSource={RelativeSource AncestorType=ContextMenu}}"
                                                           CommandParameter="{Binding PlacementTarget.DataContext,
-                                                          RelativeSource={RelativeSource AncestorType=ContextMenu}}"/>
+                                                          RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+                                                          />
                                                 <MenuItem Header="Add Genre" ItemsSource="{Binding Genre}"
                                                           Command="{Binding PlacementTarget.Tag.OpenModalCommand,
                                                           RelativeSource={RelativeSource AncestorType=ContextMenu}}"
                                                           CommandParameter="{Binding PlacementTarget.DataContext,
-                                                          RelativeSource={RelativeSource AncestorType=ContextMenu}}"/>
+                                                          RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+                                                          />
                                             </ContextMenu >
                                         </Button.ContextMenu>
                                         <Image Source="{Binding Banner}" Stretch="Uniform"/>
